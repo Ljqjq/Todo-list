@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: mediumslateblue;
+    color: white;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+header{
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+}
+
+header ,form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20vh;
+}
+
+  
+form input, form button{
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: 0;
+    outline: none;
+    background: white;
+    border-radius: 50px;
+}
+
+
+
+form button{
+    margin-left: -40px;
+    color: white;
+    cursor: pointer;
+    background: #98D52A;
+}
+
+
+
+
+.todo-container{
+    padding: 30px;
+    border-radius: 30px;
+    margin: auto;
+    max-width: 400px;
+    background-color: white;
+    
+}
+
+.todo-list li{
+    display: flex;
+    color: black;
+    padding: 15px;
+    justify-content: space-between;
+}
+
+.todo-list li:hover{
+    background: lightslategray;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+
+.todo-list li.checked {
+    background: #98D52A;
+    color: #fff;
+    
+}
+
+.todo-list li.checked::before {
+    transition: 0.2s;
+    content: '✓';
+    justify-content: flex-start;
+}
+
+
+
+
+.todo-event-delete {
+    justify-content: flex-end;
+    border: none;
+    background-color: transparent;
+}
+
+.todo-event-delete:hover {
+    outline-color: red;
+    cursor: pointer;
+}
+
+.todo-event-delete:hover circle,
+  .todo-event-delete:focus circle {
+    fill: #ff0000;
+  }
