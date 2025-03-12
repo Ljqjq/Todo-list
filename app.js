@@ -3,21 +3,30 @@
 const todoList = document.querySelector(".todo-list");
 const eventAddButton = document.querySelector(".todo-button-add");
 
+var data = JSON.parse(localStorage.getItem("data")) || [];
 //marking as done
 todoList.addEventListener("click", (ev) => {
   if (ev.target.tagName === "LI") {
-    ev.target.classList.toggle("checked");
+    ev.target.classList.toggle("checked"); 
   }
 }, false);
 
 //deleting event from list
 function deleteEvent(ev) {
+  const toDelete = ev.target.closest("li").innerText;
+  const index = data.indexOf(toDelete);
+
+  if (index > -1) {
+    data.splice(index, 1);
+  }
+
   ev.target.closest("li").remove();
+  localStorage.setItem("data", JSON.stringify(data)); 
 }
 
 //adding event to list
-function addNewEvent() {
-  const inputValue = document.querySelector("#adder").value;
+function addNewEvent(input) {
+  const inputValue = input;
   const inputText = document.createTextNode(inputValue);
   const newEvent = document.createElement("li");
 
@@ -52,6 +61,20 @@ function addNewEvent() {
   
 }
 
-eventAddButton.addEventListener("click", addNewEvent);
+eventAddButton.addEventListener("click", () => {
+  let input = document.getElementById("adder").value;
+  addNewEvent(input);
+  
+  if (input == "") {
+    return;
+  }
 
+  data.push(input);
+  localStorage.setItem("data", JSON.stringify(data));
+}
+);
+
+data.forEach(element => {
+  addNewEvent(element);
+});
 
